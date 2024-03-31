@@ -1,0 +1,28 @@
+workspace = { members = ["services", "vati"] }
+[package]
+name = "brew_story_parser"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "^1.0"
+brew_derive_macros = { path = "brew_derive_macros" }
+regex = "1.10.4"
+rust-i18n = "3"
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+service-locator = "0.2.0"
+services = { path = "services" }
+thiserror = "^1.0"
+vati = { path = "vati" }
+walkdir = "^2.5"
+
+# [dependencies.uuid]
+# version = "1.8.0"
+# features = [
+# 	"v4",                # Lets you generate random UUIDs
+# 	"fast-rng",          # Use a faster (but still sufficiently random) RNG
+# 	"macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
+# ]

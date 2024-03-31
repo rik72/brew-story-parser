@@ -1,0 +1,15 @@
+pub mod action_raw;
+pub mod character_raw;
+pub mod character_status_raw;
+pub mod dictionary_raw;
+pub mod directions_raw;
+pub mod location_raw;
+pub mod location_status_raw;
+pub mod possibility_raw;
+pub mod skin_raw;
+pub mod story_raw;
+pub mod text_raw;
+pub mod thing_raw;
+pub mod thing_status_raw;
+pub mod traits;
+pub mod word_raw;

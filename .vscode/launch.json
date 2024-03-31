@@ -1,0 +1,82 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug executable 'brew_story_parser'",
+			"cargo": {
+				"args": [
+					"build",
+					"--bin=brew_story_parser",
+					"--package=brew_story_parser"
+				],
+				"filter": {
+					"name": "brew_story_parser",
+					"kind": "bin"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug executable 'vati'",
+			"cargo": {
+				"args": [
+					"build",
+					"--bin=vati",
+					"--package=vati"
+				],
+				"filter": {
+					"name": "vati",
+					"kind": "bin"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug unit tests in library 'brew_story_parser'",
+			"cargo": {
+				"args": [
+					"test",
+					"--no-run",
+					"--lib",
+					"--package=brew_story_parser"
+				],
+				"filter": {
+					"name": "brew_story_parser",
+					"kind": "lib"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Debug unit tests in executable 'brew_story_parser'",
+			"cargo": {
+				"args": [
+					"test",
+					"--no-run",
+					"--bin=brew_story_parser",
+					"--package=brew_story_parser"
+				],
+				"filter": {
+					"name": "brew_story_parser",
+					"kind": "bin"
+				}
+			},
+			"args": [],
+			"cwd": "${workspaceFolder}"
+		}
+	]
+}

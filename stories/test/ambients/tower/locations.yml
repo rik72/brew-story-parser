@@ -1,0 +1,11 @@
+locations:
+
+  # the distant tower
+  - name: tower
+    word:
+      text: tower
+    statuses:
+      - status: initial
+        description: >
+          You are on the top of a very high tower.
+        finale: the tower finale
