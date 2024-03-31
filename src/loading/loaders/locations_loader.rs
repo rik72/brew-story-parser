@@ -14,9 +14,11 @@ impl Loadable for LocationsLoader {
         match Self::parse_merge::<LocationsDoc>(load_path, "locations.yml") {
             Some(doc) => {
                 for location in doc.locations {
+                    println!("\n    location `{}`", location.name);
                     let mut first_status = true;
                     let mut description = String::from("");
                     for st_item in location.statuses {
+                        println!("        status `{}`", st_item.status);
                         if first_status && !"initial".eq(&st_item.status) {
                             return Err(BrewError::FailedToLoad(st_item.file_name.unwrap(), format!("Location `{}`: first item of status list must be the `initial` status", location.name)));
                         }
@@ -37,7 +39,7 @@ impl Loadable for LocationsLoader {
                             match directions_parser.parse(&mut directions) {
                                 Ok(parsed_opt) => {
                                     if let Some(parsed) = parsed_opt {
-                                        println!("status {:?} => {:?}", st_item.status, parsed);
+                                        println!("            `{:?}`", parsed);
                                     }
                                 }
                                 Err(error) => {

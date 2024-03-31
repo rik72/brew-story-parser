@@ -31,7 +31,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
             let mut captures: Vec<Option<String>> = Vec::new();
             PARSER.service().unwrap().capture_pattern(
                 POSSIBILITY_PATTERN.to_string(),
-                impossible.as_str().to_string(),
+                impossible.trim().to_string(),
                 &mut captures,
             );
 
@@ -76,7 +76,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
             let mut captures: Vec<Option<String>> = Vec::new();
             PARSER.service().unwrap().capture_pattern(
                 POSSIBILITY_PATTERN.to_string(),
-                possible.as_str().to_string(),
+                possible.trim().to_string(),
                 &mut captures,
             );
             if captures.len() > 0 {
@@ -120,7 +120,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
             let mut captures: Vec<Option<String>> = Vec::new();
             PARSER.service().unwrap().capture_pattern(
                 POSSIBILITY_INHERIT_PATTERN.to_string(),
-                inherit.as_str().to_string(),
+                inherit.trim().to_string(),
                 &mut captures,
             );
             if captures.len() > 0 {

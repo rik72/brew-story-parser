@@ -4,17 +4,17 @@ use super::{
 };
 
 #[derive(Debug)]
-pub enum PossibilityParsed {
+pub enum ActionParsed {
     OneAction {
         action: OneActionParsed,
-        consequences: Vec<ConsequenceParsed>,
-        transition: String,
-        finale: String,
+        consequences: Option<Vec<ConsequenceParsed>>,
+        transition: Option<String>,
+        finale: Option<String>,
     },
     TwoAction {
         action: TwoActionParsed,
-        consequences: Vec<ConsequenceParsed>,
-        transition: String,
-        finale: String,
+        consequences: Option<Vec<ConsequenceParsed>>,
+        transition: Option<String>,
+        finale: Option<String>,
     },
 }

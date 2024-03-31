@@ -22,7 +22,7 @@ fn main() -> Result<()> {
     if let Err(error) = TextsLoader::load(&load_path) {
         println!("    {}", error.to_string());
     } else {
-        println!("    ...ok");
+        println!("\n    ...ok");
     }
 
     println!("before: {}", t!("begin_adventuring"));
@@ -31,7 +31,7 @@ fn main() -> Result<()> {
     if let Err(error) = StoryLoader::load(&load_path) {
         println!("    {}", error.to_string());
     } else {
-        println!("    ...ok");
+        println!("\n    ...ok");
     }
 
     println!("after: {}", t!("begin_adventuring"));
@@ -40,35 +40,35 @@ fn main() -> Result<()> {
     if let Err(error) = WordsLoader::load(&load_path) {
         println!("    {}", error.to_string());
     } else {
-        println!("    ...ok");
+        println!("\n    ...ok");
     }
 
     println!("\nLoading locations...");
     if let Err(error) = LocationsLoader::load(&load_path) {
         println!("    {}", error.to_string());
     } else {
-        println!("    ...ok");
+        println!("\n    ...ok");
     }
 
     println!("\nLoading characters...");
     if let Err(error) = CharactersLoader::load(&load_path) {
         println!("    {}", error.to_string());
     } else {
-        println!("    ...ok");
+        println!("\n    ...ok");
     }
 
     println!("\nLoading things...");
     if let Err(error) = ThingsLoader::load(&load_path) {
         println!("    {}", error.to_string());
     } else {
-        println!("    ...ok");
+        println!("\n    ...ok");
     }
 
     println!("\nLoading actions...");
     if let Err(error) = ActionsLoader::load(&load_path) {
         println!("    {}", error.to_string());
     } else {
-        println!("    ...ok");
+        println!("\n    ...ok");
     }
 
     Ok(())

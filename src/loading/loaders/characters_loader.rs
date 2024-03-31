@@ -15,9 +15,11 @@ impl Loadable for CharactersLoader {
         match Self::parse_merge::<CharactersDoc>(load_path, "characters.yml") {
             Some(doc) => {
                 for character in doc.characters {
+                    println!("\n    character `{}`", character.name);
                     let mut first_status = true;
                     let mut description = String::from("");
                     for st_item in character.statuses {
+                        println!("        status `{}`", st_item.status);
                         if first_status && !"initial".eq(&st_item.status) {
                             return Err(BrewError::FailedToLoad(st_item.file_name.unwrap(), format!("Character `{}`: first item of status list must be the `initial` status", character.name)));
                         }
@@ -39,7 +41,7 @@ impl Loadable for CharactersLoader {
                                 match possibility_parser.parse(&mut p_doc) {
                                     Ok(parsed_opt) => {
                                         if let Some(parsed) = parsed_opt {
-                                            println!("{:?}", parsed);
+                                            println!("            `{:?}`", parsed);
                                         }
                                     }
                                     Err(error) => {

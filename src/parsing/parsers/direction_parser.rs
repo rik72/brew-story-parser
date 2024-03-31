@@ -23,7 +23,7 @@ impl Parseable<Option<String>, DirectionParsed> for DirectionParser {
             let mut captures: Vec<Option<String>> = Vec::new();
             PARSER.service().unwrap().capture_pattern(
                 DIRECTION_PATTERN.to_string(),
-                direction.as_str().to_string(),
+                direction.trim().to_string(),
                 &mut captures,
             );
             if captures.len() > 0 {

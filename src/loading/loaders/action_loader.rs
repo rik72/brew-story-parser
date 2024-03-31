@@ -1,8 +1,12 @@
 use super::loadable::Loadable;
+use crate::parsing::parsers::parseable::Parseable;
 use crate::{
     common::brew_error::BrewError,
     loading::load_path::LoadPath,
-    parsing::docs::{characters_doc::CharactersDoc, things_doc::ThingsDoc},
+    parsing::{
+        docs::{characters_doc::CharactersDoc, things_doc::ThingsDoc},
+        parsers::action_parser::ActionParser,
+    },
 };
 
 pub struct ActionsLoader {}
@@ -19,7 +23,29 @@ impl Loadable for ActionsLoader {
         };
         match Self::parse_merge::<CharactersDoc>(load_path, "characters.yml") {
             Some(doc) => {
-                for _character in doc.characters {
+                let action_parser = ActionParser::new();
+                for character in doc.characters {
+                    println!("\n    character `{}`", character.name);
+                    for st_item in character.statuses {
+                        println!("        status `{}`", st_item.status);
+                        if let Some(actions) = st_item.actions {
+                            for mut ac_item in actions {
+                                match action_parser.parse(&mut ac_item) {
+                                    Ok(parsed_opt) => {
+                                        if let Some(parsed) = parsed_opt {
+                                            println!("            `{:?}`", parsed);
+                                        }
+                                    }
+                                    Err(error) => {
+                                        return Err(BrewError::FailedToParse(
+                                            st_item.file_name.unwrap(),
+                                            error.to_string(),
+                                        ))
+                                    }
+                                }
+                            }
+                        }
+                    }
                     // println!("{:?} actions", character);
                 }
             }
