@@ -1,4 +1,5 @@
 pub mod action_parser;
+pub mod consequence_parser;
 pub mod direction_parser;
 pub mod directions_parser;
 pub mod one_action_parser;

@@ -13,7 +13,7 @@ impl Loadable for ThingsLoader {
                 for thing in doc.things {
                     println!("\n    thing `{}`", thing.name);
                     let mut first_status = true;
-                    let mut description = String::from("");
+                    let mut _description = String::from("");
                     for st_item in thing.statuses {
                         println!("        status `{}`", st_item.status);
                         if first_status && !"initial".eq(&st_item.status) {

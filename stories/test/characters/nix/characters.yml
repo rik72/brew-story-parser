@@ -17,7 +17,7 @@ characters:
         actions:
           - action: examine .
             consequences:
-              - . => tower ( As you approach with interest the imp, he suddenly gets up to his "feet" and says "Follow me on the tower, Master". That said, he takes leave in a puff of spray and disappears in the direction of the distant tower. )
+              - . => tower ( As you approach with interest the imp, he suddenly gets up to his "feet" and says "Follow me on the tower, Master". That said, he takes leave and disappears in a puff of spray. )
               - . -> ready
               - ( toolshed.big.hammer ) initial => lazlo.inventory ( A big hammer appears in your hands )
               - ( toolshed.big.hammer ) initial -> visible

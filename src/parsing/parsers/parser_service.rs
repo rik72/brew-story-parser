@@ -61,6 +61,7 @@ impl ParserService for ParserServiceProvider {
 
     fn capture_pattern(&self, pattern: String, str: String, captures: &mut Vec<Option<String>>) {
         let regex = self.regex_registry.get(pattern).unwrap().get();
+        // println!("      with regex `{}`", regex.as_str());
         if let Some(caps) = regex.captures(&str) {
             for cap in caps.iter() {
                 match cap {
