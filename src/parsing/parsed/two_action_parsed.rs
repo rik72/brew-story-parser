@@ -4,5 +4,5 @@ pub struct TwoActionParsed {
     pub preposition: String,
     pub supplement: String,
     pub supplement_status: String,
-    pub feedback: String,
+    pub feedback: Option<String>,
 }

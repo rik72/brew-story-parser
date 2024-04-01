@@ -2,8 +2,8 @@ use crate::parsing::parsed::one_action_parsed::OneActionParsed;
 
 use super::{parse_error::ParseError, parseable::Parseable, parser_service::PARSER};
 
-const ONE_ACTION_PATTERN: &str = r"word *\. *([text])?";
-const ONE_ACTION_HR: &str = "verb . [ (feedback) ]?";
+const ONE_ACTION_PATTERN: &str = r"^word *\. *([text])?$";
+pub const ONE_ACTION_HR: &str = "verb . [ (feedback) ]?";
 
 pub struct OneActionParser {}
 

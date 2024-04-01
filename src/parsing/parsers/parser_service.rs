@@ -60,13 +60,8 @@ impl ParserService for ParserServiceProvider {
     }
 
     fn capture_pattern(&self, pattern: String, str: String, captures: &mut Vec<Option<String>>) {
-        if let Some(caps) = self
-            .regex_registry
-            .get(pattern)
-            .unwrap()
-            .get()
-            .captures(&str)
-        {
+        let regex = self.regex_registry.get(pattern).unwrap().get();
+        if let Some(caps) = regex.captures(&str) {
             for cap in caps.iter() {
                 match cap {
                     Some(capture) => captures.push(Some(capture.as_str().to_string())),

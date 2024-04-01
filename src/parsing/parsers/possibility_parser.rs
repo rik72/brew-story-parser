@@ -4,9 +4,9 @@ use crate::parsing::{
 
 use super::{parse_error::ParseError, parseable::Parseable, parser_service::PARSER};
 
-const POSSIBILITY_PATTERN: &str = "word *([text])? *(!important)?";
+const POSSIBILITY_PATTERN: &str = "^word *([text])? *(!important)?$";
 const POSSIBILITY_HR: &str = "verb [ (feedback) ]? [ !important ]?";
-const POSSIBILITY_INHERIT_PATTERN: &str = "[word] *word";
+const POSSIBILITY_INHERIT_PATTERN: &str = "^[word] *word$";
 const POSSIBILITY_INHERIT_HR: &str = "(status) verb";
 
 pub struct PossibilityParser {}
@@ -128,18 +128,22 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
                 let verb_match = &captures[2];
                 let status_str = match status_match {
                     Some(str) => str.trim().to_string(),
-                    None => "".to_string(),
+                    None => {
+                        return Err(ParseError::InvalidFormat(
+                            inherit,
+                            POSSIBILITY_INHERIT_HR.to_string(),
+                        ));
+                    }
                 };
                 let verb_str = match verb_match {
                     Some(str) => str.trim().to_string(),
-                    None => "".to_string(),
+                    None => {
+                        return Err(ParseError::InvalidFormat(
+                            inherit,
+                            POSSIBILITY_INHERIT_HR.to_string(),
+                        ));
+                    }
                 };
-                if status_str.len() == 0 || verb_str.len() == 0 {
-                    return Err(ParseError::InvalidFormat(
-                        inherit,
-                        POSSIBILITY_INHERIT_HR.to_string(),
-                    ));
-                }
                 return Ok(Some(PossibilityParsed::Inherit {
                     status: status_str,
                     verb: verb_str,
