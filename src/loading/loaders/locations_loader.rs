@@ -7,7 +7,7 @@ use crate::{
     parsing::{docs::locations_doc::LocationsDoc, parsers::possibility_parser::PossibilityParser},
 };
 
-pub struct LocationsLoader {}
+pub struct LocationsLoader;
 
 impl Loadable for LocationsLoader {
     fn load(load_path: &LoadPath) -> Result<(), BrewError> {

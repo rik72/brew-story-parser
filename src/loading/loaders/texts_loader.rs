@@ -3,7 +3,7 @@ use crate::{
     common::brew_error::BrewError, loading::load_path::LoadPath, parsing::docs::texts_doc::TextsDoc,
 };
 
-pub struct TextsLoader {}
+pub struct TextsLoader;
 
 impl Loadable for TextsLoader {
     fn load(load_path: &LoadPath) -> Result<(), BrewError> {

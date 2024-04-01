@@ -9,7 +9,7 @@ use crate::{
     },
 };
 
-pub struct ActionsLoader {}
+pub struct ActionsLoader;
 
 impl Loadable for ActionsLoader {
     fn load(load_path: &LoadPath) -> Result<(), BrewError> {

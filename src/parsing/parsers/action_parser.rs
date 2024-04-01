@@ -8,11 +8,11 @@ use super::{
     two_action_parser::{TwoActionParser, TWO_ACTION_HR},
 };
 
-pub struct ActionParser {}
+pub struct ActionParser;
 
 impl ActionParser {
     pub fn new() -> Self {
-        Self {}
+        Self
     }
 }
 

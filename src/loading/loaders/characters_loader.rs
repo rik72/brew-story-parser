@@ -8,7 +8,7 @@ use crate::{
     },
 };
 
-pub struct CharactersLoader {}
+pub struct CharactersLoader;
 
 impl Loadable for CharactersLoader {
     fn load(load_path: &LoadPath) -> Result<(), BrewError> {

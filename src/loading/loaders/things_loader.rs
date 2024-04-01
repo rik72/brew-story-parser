@@ -4,7 +4,7 @@ use crate::{
     parsing::docs::things_doc::ThingsDoc,
 };
 
-pub struct ThingsLoader {}
+pub struct ThingsLoader;
 
 impl Loadable for ThingsLoader {
     fn load(load_path: &LoadPath) -> Result<(), BrewError> {

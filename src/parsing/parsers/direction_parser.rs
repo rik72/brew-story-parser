@@ -5,7 +5,7 @@ use super::{parse_error::ParseError, parseable::Parseable, parser_service::PARSE
 const DIRECTION_PATTERN: &str = "^word *([word])?$";
 const DIRECTION_HR: &str = "location [ (verb) ]?";
 
-pub struct DirectionParser {}
+pub struct DirectionParser;
 
 impl DirectionParser {
     pub fn new() -> Self {
@@ -13,7 +13,7 @@ impl DirectionParser {
             .service_mut()
             .unwrap()
             .register_pattern(DIRECTION_PATTERN);
-        Self {}
+        Self
     }
 }
 

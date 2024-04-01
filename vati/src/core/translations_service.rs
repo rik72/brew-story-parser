@@ -7,11 +7,11 @@ pub trait TranslationsService: Service {
     fn set_locale(&self, locale: &str);
 }
 
-pub struct TranslationsServiceProvider {}
+pub struct TranslationsServiceProvider;
 
 impl TranslationsServiceProvider {
     pub fn new() -> Self {
-        Self {}
+        Self
     }
 }
 

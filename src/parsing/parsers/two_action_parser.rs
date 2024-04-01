@@ -5,7 +5,7 @@ use super::{parse_error::ParseError, parseable::Parseable, parser_service::PARSE
 const TWO_ACTION_PATTERN: &str = r"^word *\. *[word] *[word] *word *([text])?$";
 pub const TWO_ACTION_HR: &str = "verb . (preposition) (supplement) status [ (feedback) ]?";
 
-pub struct TwoActionParser {}
+pub struct TwoActionParser;
 
 impl TwoActionParser {
     pub fn new() -> Self {
@@ -13,7 +13,7 @@ impl TwoActionParser {
             .service_mut()
             .unwrap()
             .register_pattern(TWO_ACTION_PATTERN);
-        Self {}
+        Self
     }
 }
 

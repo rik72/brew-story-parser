@@ -29,7 +29,9 @@ impl VatiLocaleServiceProvider {
 }
 
 impl Service for VatiLocaleServiceProvider {
-    fn init(&mut self) {}
+    fn init(&mut self) {
+        // NOP
+    }
 }
 
 impl VatiLocaleService for VatiLocaleServiceProvider {

@@ -4,11 +4,11 @@ use crate::parsing::{
 
 use super::{direction_parser::DirectionParser, parse_error::ParseError, parseable::Parseable};
 
-pub struct DirectionsParser {}
+pub struct DirectionsParser;
 
 impl DirectionsParser {
     pub fn new() -> Self {
-        Self {}
+        Self
     }
 }
 

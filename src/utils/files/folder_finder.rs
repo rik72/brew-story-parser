@@ -1,7 +1,7 @@
 use super::finder::Finder;
 use walkdir::WalkDir;
 
-pub struct FolderFinder {}
+pub struct FolderFinder;
 
 impl Finder for FolderFinder {
     fn find_files(req_f_name: &str, path: &String) -> Vec<String> {

@@ -1,6 +1,6 @@
 use super::finder::Finder;
 
-pub struct CanFinder {}
+pub struct CanFinder;
 
 impl Finder for CanFinder {
     fn find_files(filename: &str, path: &String) -> Vec<String> {

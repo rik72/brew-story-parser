@@ -5,7 +5,7 @@ use super::{parse_error::ParseError, parseable::Parseable, parser_service::PARSE
 const ONE_ACTION_PATTERN: &str = r"^word *\. *([text])?$";
 pub const ONE_ACTION_HR: &str = "verb . [ (feedback) ]?";
 
-pub struct OneActionParser {}
+pub struct OneActionParser;
 
 impl OneActionParser {
     pub fn new() -> Self {
@@ -13,7 +13,7 @@ impl OneActionParser {
             .service_mut()
             .unwrap()
             .register_pattern(ONE_ACTION_PATTERN);
-        Self {}
+        Self
     }
 }
 

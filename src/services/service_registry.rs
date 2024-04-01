@@ -5,7 +5,7 @@ use vati::core::{
 
 use crate::parsing::parsers::parser_service::{ParserServiceProvider, PARSER};
 
-pub struct ServiceRegistry {}
+pub struct ServiceRegistry;
 
 impl ServiceRegistry {
     pub fn init_services() {

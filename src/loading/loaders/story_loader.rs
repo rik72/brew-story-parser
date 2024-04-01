@@ -6,7 +6,7 @@ use crate::{
 
 use super::loadable::Loadable;
 
-pub struct StoryLoader {}
+pub struct StoryLoader;
 
 impl Loadable for StoryLoader {
     fn load(load_path: &LoadPath) -> Result<(), BrewError> {

@@ -9,7 +9,7 @@ const POSSIBILITY_HR: &str = "verb [ (feedback) ]? [ !important ]?";
 const POSSIBILITY_INHERIT_PATTERN: &str = "^[word] *word$";
 const POSSIBILITY_INHERIT_HR: &str = "(status) verb";
 
-pub struct PossibilityParser {}
+pub struct PossibilityParser;
 
 impl PossibilityParser {
     pub fn new() -> Self {
@@ -21,7 +21,7 @@ impl PossibilityParser {
             .service_mut()
             .unwrap()
             .register_pattern(POSSIBILITY_INHERIT_PATTERN);
-        Self {}
+        Self
     }
 }
 

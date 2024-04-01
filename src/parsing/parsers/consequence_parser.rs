@@ -6,7 +6,7 @@ const CONSEQUENCE_PATTERN: &str = r"^(\.|([word]) *word) *(-> *word)? *(=> *word
 pub const CONSEQUENCE_HR: &str =
     "( . | (thing) status_before [ -> status_after ]? [ => location_after ]? [ (feedback) ]? )";
 
-pub struct ConsequenceParser {}
+pub struct ConsequenceParser;
 
 impl ConsequenceParser {
     pub fn new() -> Self {
@@ -14,7 +14,7 @@ impl ConsequenceParser {
             .service_mut()
             .unwrap()
             .register_pattern(CONSEQUENCE_PATTERN);
-        Self {}
+        Self
     }
 }
 
