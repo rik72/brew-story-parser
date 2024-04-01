@@ -2,17 +2,18 @@ use crate::parsing::parsed::two_action_parsed::TwoActionParsed;
 
 use super::{parse_error::ParseError, parseable::Parseable, parser_service::PARSER};
 
-const TWO_ACTION_PATTERN: &str = r"^word *\. *[word] *[word] *word *([text])?$";
-pub const TWO_ACTION_HR: &str = "verb . (preposition) (supplement) status [ (feedback) ]?";
-
 pub struct TwoActionParser;
 
 impl TwoActionParser {
+    const TWO_ACTION_PATTERN: &'static str = r"^word *\. *[word] *[word] *word *([text])?$";
+    pub const TWO_ACTION_HR: &'static str =
+        "verb . (preposition) (supplement) status [ (feedback) ]?";
+
     pub fn new() -> Self {
         PARSER
             .service_mut()
             .unwrap()
-            .register_pattern(TWO_ACTION_PATTERN);
+            .register_pattern(Self::TWO_ACTION_PATTERN);
         Self
     }
 }
@@ -21,7 +22,7 @@ impl Parseable<String, TwoActionParsed> for TwoActionParser {
     fn parse(&self, raw: &mut String) -> Result<Option<TwoActionParsed>, ParseError> {
         let mut captures: Vec<Option<String>> = Vec::new();
         PARSER.service().unwrap().capture_pattern(
-            TWO_ACTION_PATTERN.to_string(),
+            Self::TWO_ACTION_PATTERN.to_string(),
             raw.trim().to_string(),
             &mut captures,
         );
@@ -36,7 +37,7 @@ impl Parseable<String, TwoActionParsed> for TwoActionParser {
                 None => {
                     return Err(ParseError::InvalidFormat(
                         raw.to_string(),
-                        TWO_ACTION_HR.to_string(),
+                        Self::TWO_ACTION_HR.to_string(),
                     ));
                 }
             };
@@ -45,7 +46,7 @@ impl Parseable<String, TwoActionParsed> for TwoActionParser {
                 None => {
                     return Err(ParseError::InvalidFormat(
                         raw.to_string(),
-                        TWO_ACTION_HR.to_string(),
+                        Self::TWO_ACTION_HR.to_string(),
                     ));
                 }
             };
@@ -54,7 +55,7 @@ impl Parseable<String, TwoActionParsed> for TwoActionParser {
                 None => {
                     return Err(ParseError::InvalidFormat(
                         raw.to_string(),
-                        TWO_ACTION_HR.to_string(),
+                        Self::TWO_ACTION_HR.to_string(),
                     ));
                 }
             };
@@ -63,7 +64,7 @@ impl Parseable<String, TwoActionParsed> for TwoActionParser {
                 None => {
                     return Err(ParseError::InvalidFormat(
                         raw.to_string(),
-                        TWO_ACTION_HR.to_string(),
+                        Self::TWO_ACTION_HR.to_string(),
                     ));
                 }
             };

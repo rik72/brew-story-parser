@@ -2,17 +2,17 @@ use crate::parsing::parsed::direction_parsed::DirectionParsed;
 
 use super::{parse_error::ParseError, parseable::Parseable, parser_service::PARSER};
 
-const DIRECTION_PATTERN: &str = "^word *([word])?$";
-const DIRECTION_HR: &str = "location [ (verb) ]?";
-
 pub struct DirectionParser;
 
 impl DirectionParser {
+    const DIRECTION_PATTERN: &'static str = "^word *([word])?$";
+    const DIRECTION_HR: &'static str = "location [ (verb) ]?";
+
     pub fn new() -> Self {
         PARSER
             .service_mut()
             .unwrap()
-            .register_pattern(DIRECTION_PATTERN);
+            .register_pattern(Self::DIRECTION_PATTERN);
         Self
     }
 }
@@ -22,7 +22,7 @@ impl Parseable<Option<String>, DirectionParsed> for DirectionParser {
         if let Some(direction) = raw.take() {
             let mut captures: Vec<Option<String>> = Vec::new();
             PARSER.service().unwrap().capture_pattern(
-                DIRECTION_PATTERN.to_string(),
+                Self::DIRECTION_PATTERN.to_string(),
                 direction.trim().to_string(),
                 &mut captures,
             );
@@ -34,7 +34,7 @@ impl Parseable<Option<String>, DirectionParsed> for DirectionParser {
                     None => {
                         return Err(ParseError::InvalidFormat(
                             direction,
-                            DIRECTION_HR.to_string(),
+                            Self::DIRECTION_HR.to_string(),
                         ));
                     }
                 };

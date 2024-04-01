@@ -1,11 +1,8 @@
 use crate::parsing::{parsed::action_parsed::ActionParsed, raw::action_raw::ActionRaw};
 
 use super::{
-    consequence_parser::ConsequenceParser,
-    one_action_parser::{OneActionParser, ONE_ACTION_HR},
-    parse_error::ParseError,
-    parseable::Parseable,
-    two_action_parser::{TwoActionParser, TWO_ACTION_HR},
+    consequence_parser::ConsequenceParser, one_action_parser::OneActionParser,
+    parse_error::ParseError, parseable::Parseable, two_action_parser::TwoActionParser,
 };
 
 pub struct ActionParser;
@@ -40,8 +37,8 @@ impl Parseable<ActionRaw, ActionParsed> for ActionParser {
                     raw.action.to_string(),
                     format!(
                         "`{}` | `{}`",
-                        ONE_ACTION_HR.to_string(),
-                        TWO_ACTION_HR.to_string()
+                        OneActionParser::ONE_ACTION_HR,
+                        TwoActionParser::TWO_ACTION_HR
                     ),
                 ));
             }
@@ -93,8 +90,8 @@ impl Parseable<ActionRaw, ActionParsed> for ActionParser {
             raw.action.to_string(),
             format!(
                 "`{}` | `{}`",
-                ONE_ACTION_HR.to_string(),
-                TWO_ACTION_HR.to_string()
+                OneActionParser::ONE_ACTION_HR,
+                TwoActionParser::TWO_ACTION_HR
             ),
         ))
     }

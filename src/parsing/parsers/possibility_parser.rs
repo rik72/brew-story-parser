@@ -4,23 +4,23 @@ use crate::parsing::{
 
 use super::{parse_error::ParseError, parseable::Parseable, parser_service::PARSER};
 
-const POSSIBILITY_PATTERN: &str = "^word *([text])? *(!important)?$";
-const POSSIBILITY_HR: &str = "verb [ (feedback) ]? [ !important ]?";
-const POSSIBILITY_INHERIT_PATTERN: &str = "^[word] *word$";
-const POSSIBILITY_INHERIT_HR: &str = "(status) verb";
-
 pub struct PossibilityParser;
 
 impl PossibilityParser {
+    const POSSIBILITY_PATTERN: &'static str = "^word *([text])? *(!important)?$";
+    const POSSIBILITY_HR: &'static str = "verb [ (feedback) ]? [ !important ]?";
+    const POSSIBILITY_INHERIT_PATTERN: &'static str = "^[word] *word$";
+    const POSSIBILITY_INHERIT_HR: &'static str = "(status) verb";
+
     pub fn new() -> Self {
         PARSER
             .service_mut()
             .unwrap()
-            .register_pattern(POSSIBILITY_PATTERN);
+            .register_pattern(Self::POSSIBILITY_PATTERN);
         PARSER
             .service_mut()
             .unwrap()
-            .register_pattern(POSSIBILITY_INHERIT_PATTERN);
+            .register_pattern(Self::POSSIBILITY_INHERIT_PATTERN);
         Self
     }
 }
@@ -30,7 +30,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
         if let Some(impossible) = raw.impossible.take() {
             let mut captures: Vec<Option<String>> = Vec::new();
             PARSER.service().unwrap().capture_pattern(
-                POSSIBILITY_PATTERN.to_string(),
+                Self::POSSIBILITY_PATTERN.to_string(),
                 impossible.trim().to_string(),
                 &mut captures,
             );
@@ -45,7 +45,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
                         if verb_str.len() == 0 {
                             return Err(ParseError::InvalidFormat(
                                 impossible,
-                                POSSIBILITY_HR.to_string(),
+                                Self::POSSIBILITY_HR.to_string(),
                             ));
                         }
                         return Ok(Some(PossibilityParsed::Impossible {
@@ -63,7 +63,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
                     None => {
                         return Err(ParseError::InvalidFormat(
                             impossible,
-                            POSSIBILITY_HR.to_string(),
+                            Self::POSSIBILITY_HR.to_string(),
                         ));
                     }
                 }
@@ -75,7 +75,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
         if let Some(possible) = raw.possible.take() {
             let mut captures: Vec<Option<String>> = Vec::new();
             PARSER.service().unwrap().capture_pattern(
-                POSSIBILITY_PATTERN.to_string(),
+                Self::POSSIBILITY_PATTERN.to_string(),
                 possible.trim().to_string(),
                 &mut captures,
             );
@@ -89,7 +89,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
                         if verb_str.len() == 0 {
                             return Err(ParseError::InvalidFormat(
                                 possible,
-                                POSSIBILITY_HR.to_string(),
+                                Self::POSSIBILITY_HR.to_string(),
                             ));
                         }
                         return Ok(Some(PossibilityParsed::Possible {
@@ -107,7 +107,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
                     None => {
                         return Err(ParseError::InvalidFormat(
                             possible,
-                            POSSIBILITY_HR.to_string(),
+                            Self::POSSIBILITY_HR.to_string(),
                         ));
                     }
                 };
@@ -119,7 +119,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
         if let Some(inherit) = raw.inherit.take() {
             let mut captures: Vec<Option<String>> = Vec::new();
             PARSER.service().unwrap().capture_pattern(
-                POSSIBILITY_INHERIT_PATTERN.to_string(),
+                Self::POSSIBILITY_INHERIT_PATTERN.to_string(),
                 inherit.trim().to_string(),
                 &mut captures,
             );
@@ -131,7 +131,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
                     None => {
                         return Err(ParseError::InvalidFormat(
                             inherit,
-                            POSSIBILITY_INHERIT_HR.to_string(),
+                            Self::POSSIBILITY_INHERIT_HR.to_string(),
                         ));
                     }
                 };
@@ -140,7 +140,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
                     None => {
                         return Err(ParseError::InvalidFormat(
                             inherit,
-                            POSSIBILITY_INHERIT_HR.to_string(),
+                            Self::POSSIBILITY_INHERIT_HR.to_string(),
                         ));
                     }
                 };
@@ -154,11 +154,11 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
         }
 
         Err(ParseError::InvalidFormat(
-            "".to_string(),
+            String::from(""),
             format!(
                 "`{}` | `{}`",
-                POSSIBILITY_HR.to_string(),
-                POSSIBILITY_INHERIT_HR.to_string()
+                Self::POSSIBILITY_HR,
+                Self::POSSIBILITY_INHERIT_HR
             ),
         ))
     }
