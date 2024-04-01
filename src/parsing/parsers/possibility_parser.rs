@@ -156,7 +156,7 @@ impl Parseable<PossibilityRaw, PossibilityParsed> for PossibilityParser {
         Err(ParseError::InvalidFormat(
             "".to_string(),
             format!(
-                "({}) | ({})",
+                "`{}` | `{}`",
                 POSSIBILITY_HR.to_string(),
                 POSSIBILITY_INHERIT_HR.to_string()
             ),

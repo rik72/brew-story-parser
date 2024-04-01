@@ -24,14 +24,6 @@ impl Parseable<ActionRaw, ActionParsed> for ActionParser {
                 return Err(err);
             }
         };
-        if let Some(action) = one_action {
-            return Ok(Some(ActionParsed::OneAction {
-                action,
-                consequences: None,
-                transition: None,
-                finale: None,
-            }));
-        }
 
         let two_action_parser = TwoActionParser::new();
         let two_action = match two_action_parser.parse(&mut raw.action) {
@@ -40,7 +32,28 @@ impl Parseable<ActionRaw, ActionParsed> for ActionParser {
                 return Err(err);
             }
         };
-        if let Some(action) = two_action {
+
+        if let None = one_action {
+            if let None = two_action {
+                return Err(ParseError::InvalidFormat(
+                    raw.action.to_string(),
+                    format!(
+                        "`{}` | `{}`",
+                        ONE_ACTION_HR.to_string(),
+                        TWO_ACTION_HR.to_string()
+                    ),
+                ));
+            }
+        }
+
+        if let Some(action) = one_action {
+            return Ok(Some(ActionParsed::OneAction {
+                action,
+                consequences: None,
+                transition: None,
+                finale: None,
+            }));
+        } else if let Some(action) = two_action {
             return Ok(Some(ActionParsed::TwoAction {
                 action,
                 consequences: None,
@@ -52,7 +65,7 @@ impl Parseable<ActionRaw, ActionParsed> for ActionParser {
         Err(ParseError::InvalidFormat(
             raw.action.to_string(),
             format!(
-                "({}) | ({})",
+                "`{}` | `{}`",
                 ONE_ACTION_HR.to_string(),
                 TWO_ACTION_HR.to_string()
             ),
